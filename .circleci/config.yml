@@ -16,7 +16,7 @@ jobs:
                     docker load -i ~/cache/image.tar || true
                     docker history hoge || true
 
-            - run: docker build -t hoge .
+            - run: docker build -t hoge . --cache-from hoge
 
             - run:
                 command: |
