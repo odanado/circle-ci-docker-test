@@ -14,12 +14,15 @@ jobs:
             - run:
                 command: |
                     docker load -i ~/cache/image.tar || true
-                    docker history hoge
+                    docker history hoge || true
+
             - run: docker build -t hoge .
+
             - run:
                 command: |
                     mkdir -p ~/cache && docker save -o ~/cache/image.tar hoge
                     docker history hoge
+
             - save_cache:
                 key: docker-{{ checksum "Dockerfile" }}
                 paths: ~/cache/image.tar
