@@ -9,7 +9,7 @@ jobs:
                 key: docker-{{ checksum "Dockerfile" }}
                 path: ~/cache/image.tar
 
-            - run: test -d ~/cache && docker load -i ~/cache/image.tar
+            - run: docker load -i ~/cache/image.tar || true
             - run: docker build -t hoge .
             - run: mkdir -p ~/cache && docker save -o ~/cache/image.tar hoge
             - save_cache:
