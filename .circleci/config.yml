@@ -8,7 +8,7 @@ jobs:
             - checkout
             - setup_remote_docker
             - restore_cache:
-                key: docker-{{ checksum "Dockerfile" }}
+                key: docker-cache-{{ checksum "Dockerfile" }}
                 path: ~/cache/image.tar
 
             - run:
@@ -24,5 +24,5 @@ jobs:
                     docker history hoge
 
             - save_cache:
-                key: docker-{{ checksum "Dockerfile" }}
+                key: docker-cache-{{ checksum "Dockerfile" }}
                 paths: ~/cache/image.tar
